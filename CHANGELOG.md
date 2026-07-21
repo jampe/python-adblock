@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
-## Unreleased
+## 0.7.0 - (2026-07-20)
 ---
 ### Changes
 * Update PyO3 dependency to `0.28`.

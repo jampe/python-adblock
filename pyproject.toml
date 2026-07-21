@@ -1,6 +1,6 @@
 [project]
 name = "adblock"
-version = "0.6.0"
+version = "0.7.0"
 description = "Brave's adblocking in Python"
 requires-python = ">=3.7"
 authors = [{ name = "Árni Dagur", email = "arni@dagur.eu" }]
@@ -13,7 +13,7 @@ classifiers = [
 
 [tool.poetry]
 name = "adblock"
-version = "0.6.0"
+version = "0.7.0"
 description = "Brave's adblocking in Python"
 authors = ["Árni Dagur <arni@dagur.eu>"]
 
