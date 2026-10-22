@@ -496,17 +496,24 @@ impl Engine {
 
     /// Sets this engine's resources to the provided collection.
     ///
-    /// Each resource is a tuple of `(name, content_type, content, aliases)`.
+    /// Each resource is a tuple of
+    /// `(name, content_type, content, aliases, dependencies)`.
     /// Note: this replaces any previously-set resources, matching the
     /// underlying `use_resources` semantics — pass all resources in one call.
     #[pyo3(signature = (resources,))]
     pub fn add_resources(
         &mut self,
-        resources: Vec<(String, String, String, Option<Vec<String>>)>,
+        resources: Vec<(
+            String,
+            String,
+            String,
+            Option<Vec<String>>,
+            Option<Vec<String>>,
+        )>,
     ) -> PyResult<()> {
         let parsed: Vec<Resource> = resources
             .into_iter()
-            .map(|(name, content_type, content, aliases)| Resource {
+            .map(|(name, content_type, content, aliases, dependencies)| Resource {
                 name,
                 aliases: aliases.unwrap_or_default(),
                 kind: match content_type.as_str() {
@@ -514,7 +521,7 @@ impl Engine {
                     _ => ResourceType::Mime(MimeType::from(std::borrow::Cow::from(content_type))),
                 },
                 content,
-                dependencies: vec![],
+                dependencies: dependencies.unwrap_or_default(),
                 permission: Default::default(),
             })
             .collect();
